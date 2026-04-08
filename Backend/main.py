@@ -4,9 +4,7 @@ from fastapi.responses import StreamingResponse
 import base64
 from io import BytesIO
 from PIL import Image
-
-# Import your algorithm here
-# from crypto_engine import encrypt, decrypt 
+from crypto_engine import encrypt, decrypt 
 
 app = FastAPI(title="Cyber Image Encryptor API")
 
@@ -25,40 +23,34 @@ def home():
 
 # --- STEP 2: The Encryption Endpoint ---
 @app.post("/encrypt")
-async def encrypt_image(file: UploadFile = File(...), key: str = Form(...)):
-    # Check key length (as per your ShiftBlock requirement)
+async def encrypt_image_endpoint(file: UploadFile = File(...), key: str = Form(...)):
     if len(key) != 8:
         raise HTTPException(status_code=400, detail="Key must be 8 characters.")
 
-    # Read image file
     contents = await file.read()
-    
-    # Convert image to Base64 (This makes it a string your algorithm can process)
+    # Convert image bytes to Base64 string
     img_str = base64.b64encode(contents).decode('utf-8')
     
-    # --- CALL YOUR ALGORITHM HERE ---
-    # ciphertext = encrypt(img_str, key)
-    ciphertext = f"ENC_{img_str[:10]}..." # Placeholder logic
-    
-    return {
-        "filename": file.filename,
-        "encrypted_data": ciphertext
-    }
-
-# --- STEP 3: The Decryption Endpoint ---
-@app.post("/decrypt")
-async def decrypt_image(encrypted_data: str = Form(...), key: str = Form(...)):
-    # --- CALL YOUR ALGORITHM HERE ---
-    # decrypted_base64 = decrypt(encrypted_data, key)
-    decrypted_base64 = encrypted_data.replace("ENC_", "") # Placeholder logic
-    
+    # Run ShiftBlock-8 logic
     try:
-        # Convert string back to binary image data
-        image_bytes = base64.b64decode(decrypted_base64)
-        return StreamingResponse(BytesIO(image_bytes), media_type="image/png")
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid encrypted data or key.")
+        encrypted_str = encrypt(img_str, key)
+        return {"filename": file.filename, "encrypted_data": encrypted_str}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Encryption Error: {str(e)}")
+
+@app.post("/decrypt")
+async def decrypt_image_endpoint(encrypted_data: str = Form(...), key: str = Form(...)):
+    try:
+        # Run ShiftBlock-8 logic
+        decrypted_img_str = decrypt(encrypted_data, key)
+        
+        # Convert Base64 string back to binary
+        img_bytes = base64.b64decode(decrypted_img_str)
+        
+        return StreamingResponse(BytesIO(img_bytes), media_type="image/png")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Decryption failed. Check key or data.")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8001)
