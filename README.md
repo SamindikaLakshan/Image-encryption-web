@@ -33,3 +33,12 @@ ShiftBlock-8 is a high-security image encryption platform designed to provide ab
   - Enter the **same 8-character key**
   - Click **Decrypt** → preview + download decrypted image
 
+## 💡 Practical Use Cases
+- **Cloud Privacy:** Scramble personal photos before uploading to public cloud storage.
+
+- **Secure Sharing:** Safely send sensitive IDs or documents over unencrypted communication channels.
+
+- **Stealth Storage:** Store memories on USB drives as "junk" noise files that don't attract attention.
+
+- **Data Integrity:** Use as a verifiable seal for digital assets where any change in state is visually obvious.
+
