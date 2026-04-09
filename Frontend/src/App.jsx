@@ -15,7 +15,7 @@ function App() {
   const [showAbout, setShowAbout] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // keep in sync with backend
+  const MAX_UPLOAD_BYTES = 8 * 1024 * 1024; // keep in sync with backend
   const ALLOWED_ENCRYPT_TYPES = new Set(["image/png", "image/jpeg", "image/jpg", "image/webp"]);
   const ALLOWED_DECRYPT_TYPES = new Set(["image/png"]);
   const KEY_ALLOWED_RE = /^[A-Za-z0-9 !"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]{0,8}$/;
@@ -189,7 +189,7 @@ function App() {
 
           <div style={{ backgroundColor: '#1e293b', padding: '30px', borderRadius: '15px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.5)' }}>
             <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', marginBottom: '8px', textAlign: 'left' }}>Upload File:</label>
+              <label style={{ display: 'block', marginBottom: '8px', textAlign: 'left' }}>Upload The Image:</label>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -232,7 +232,7 @@ function App() {
             </button>
           </div>
 
-          {/* This is the part that fixed [object Object] */}
+          {/* Image Result */}
           {resultData && typeof resultData === 'string' && (
             <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#1e293b', borderRadius: '15px' }}>
               <h3 style={{ marginBottom: '15px' }}>Result:</h3>

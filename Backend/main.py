@@ -16,7 +16,7 @@ app.add_middleware(
     expose_headers=["Content-Disposition"] # Important for downloads
 )
 
-MAX_UPLOAD_BYTES = 5 * 1024 * 1024  # 5 MB
+MAX_UPLOAD_BYTES = 8 * 1024 * 1024  # 8 MB
 ALLOWED_ENCRYPT_CONTENT_TYPES = {"image/png", "image/jpeg", "image/jpg", "image/webp"}
 ALLOWED_DECRYPT_CONTENT_TYPES = {"image/png"}
 
