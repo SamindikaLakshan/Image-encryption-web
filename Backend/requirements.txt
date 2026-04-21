@@ -1,0 +1,11 @@
+# Web Server and Framework
+fastapi
+uvicorn
+gunicorn
+
+# Image Processing and Logic
+Pillow
+numpy
+
+# Request Handling
+python-multipart
