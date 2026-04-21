@@ -93,7 +93,7 @@ function App() {
     try {
       const endpoint = mode === "encrypt" ? "encrypt" : "decrypt";
 
-      const response = await axios.post(`http://127.0.0.1:8001/${endpoint}`, formData, {
+      const response = await axios.post(`https://shiftblock-backend-axamhwfxfkcffubf.eastasia-01.azurewebsites.net/${endpoint}`, formData, {
         responseType: 'blob', 
       });
 
