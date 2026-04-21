@@ -9,5 +9,3 @@ numpy
 
 # Request Handling
 python-multipart
-
-uvicorn[standard]
