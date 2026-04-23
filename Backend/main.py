@@ -3,7 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 import base64
 from io import BytesIO
-from crypto_engine import encrypt, decrypt, text_to_snow_image, snow_image_to_text, CHAR_TO_INDEX
+from .crypto_engine import (
+    encrypt,
+    decrypt,
+    text_to_snow_image,
+    snow_image_to_text,
+    CHAR_TO_INDEX,
+)
 from PIL import Image, UnidentifiedImageError
 
 app = FastAPI(title="Cyber Image Encryptor API")
