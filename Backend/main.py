@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 import base64
 from io import BytesIO
-from crypto_engine import encrypt, decrypt, text_to_snow_image, snow_image_to_text, CHAR_TO_INDEX
+from .crypto_engine import encrypt, decrypt, text_to_snow_image, snow_image_to_text, CHAR_TO_INDEX
 from PIL import Image, UnidentifiedImageError
 
 app = FastAPI(title="Cyber Image Encryptor API")
@@ -128,4 +128,4 @@ async def decrypt_image_endpoint(file: UploadFile = File(...), key: str = Form(.
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
