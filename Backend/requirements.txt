@@ -1,0 +1,11 @@
+# Web Server and Framework
+fastapi
+uvicorn[standard]
+gunicorn; platform_system != "Windows"
+
+# Image Processing and Logic
+pillow
+numpy
+
+# Request Handling
+python-multipart
