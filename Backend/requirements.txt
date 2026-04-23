@@ -1,10 +1,10 @@
 # Web Server and Framework
 fastapi
-uvicorn
-gunicorn
+uvicorn[standard]
+gunicorn; platform_system != "Windows"
 
 # Image Processing and Logic
-Pillow
+pillow
 numpy
 
 # Request Handling
